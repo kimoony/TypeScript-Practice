@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 // React를 할 땐 propTypes로 prop을 확인해주었지만 
@@ -29,15 +29,20 @@ interface CircleProps { // 이 객체 안에서 bgColor가 발견된다.
   bgColor: string;  // bgColor는 string이 되어야해! requierd
   borderColor?: string;  // ? 를 넣으면 있어도 되고 없어도 된다는 의미이다. requierd 가 아니다.
   // string | undefined
-  text?: string
 }
 
 // CircleProps 의 타입이 뭔지 component 에게 말해줘야 한다.
-function Circle({ bgColor, borderColor, text = "default text" }: CircleProps) { // bgColor의 타입은 CircleProps의 객체이다.
+function Circle({ bgColor, borderColor }: CircleProps) { // bgColor의 타입은 CircleProps의 객체이다.
+  // // 만약 value의 값이 string이나 number 타입이 되길 원할 때
+  // const [value, setValue] = useState<number | string>(0)
+  // // setValue("asdf") // string 사용 가능
+  // // setValue(true) // error
+
+  const [value, setValue] = useState(0);
+
+
   return (
-    <Container bgColor={bgColor} borderColor={borderColor ?? bgColor}>
-      {text}
-    </Container>
+    <Container bgColor={bgColor} borderColor={borderColor ?? bgColor} />
   )
 }
 
